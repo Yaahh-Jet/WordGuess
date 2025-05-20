@@ -214,12 +214,12 @@ void playLevel(const char *filename, int level) {
 void bonusRound() {
     printf("\n🎁 BONUS ROUND!\n");
     printf("Guess the word from emojis:\n");
-    printf("🐱 + 🐟 = ?\n");  // ASCII Approximation
+    printf(":) is What emotion ?\n");  
     printf("Type your answer: ");
     char guess[20];
     scanf("%s", guess);
     toUpper(guess);
-    if (strcmp(guess, "CATFISH") == 0) {
+    if (strcmp(guess, "HAPPY") == 0) {
         printf("🎉 Correct! Bonus 20 points!\n");
         score += 20;
     } else {
