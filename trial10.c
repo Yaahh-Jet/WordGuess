@@ -231,7 +231,7 @@ int main() {
     srand(time(0));
     int level = 1;
     char play;
-    printf("🧠 Welcome to the Word Search Game!\n");
+    printf("🧠 Welcome to the Word Search Game!(TOPIC: PROGRAMMING)\n");
     printf("Enter ur name:");
     char name[50];
     scanf("%s", name);
