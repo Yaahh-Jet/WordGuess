@@ -219,11 +219,11 @@ void bonusRound() {
     char guess[20];
     scanf("%s", guess);
     toUpper(guess);
-    if (strcmp(guess, "HAPPY") == 0) {
+    if (strcmp(toupper(guess), "HAPPY") == 0) {
         printf("🎉 Correct! Bonus 20 points!\n");
         score += 20;
     } else {
-        printf("❌ Wrong! No bonus.\n");
+        printf("❌ Sorry! No bonus.\n");
     }
 }
 
@@ -235,6 +235,32 @@ int main() {
     printf("Enter ur name:");
     char name[50];
     scanf("%s", name);
+    setColor(15);
+    printf("Giddy up %s! Let's start the game!\n", name);
+    setColor(7);
+    Sleep(1000);
+    printf("-----------------------------------------\n");
+    printf("Just to set the rules straight, in the first grid\n");
+    setColor(2);
+    printf("(EASY) ;");
+    setColor(3);
+    printf("2 words are 3 to 4 letters long and will be placed either horizontally or vertically;\n");
+    setColor(7);
+    printf("If u choose to go to the next grid\n");
+    setColor(6);
+    printf("(MEDIUM),");
+    setColor(3);
+    printf("it contains 3 words of 4 to 5 letters long which will either be placed diagonally or horizontally or vertically;\n");
+    setColor(7);
+    printf("The next level \n");
+    setColor(4);
+    printf("(HARD) ");
+    setColor(3);
+    printf("also contains 3 words and is 6 to 9 letters long which will either be placed reversed or diagonally or horizontally or vertically.\n\n");
+    setColor(7);
+    printf("-----------------------------------------------------\n");
+    Sleep(5000);
+
 
     while (1) {
         if (level == 1) playLevel("Easyy.txt", level);
