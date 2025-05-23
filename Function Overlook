@@ -1,0 +1,164 @@
+## 🚦 FUNCTION FLOW OVERVIEW
+
+### 🟢 1. main()
+
+*Entry point. Sets up and controls level progression.*
+
+* Calls:
+
+  * srand(time(0)) – Random seed
+  * playLevel(...) – For each level (Easy, Medium, Hard)
+  * bonusRound() – After Hard level
+  * Displays final score
+
+---
+
+### 🟡 2. playLevel(filename, level)
+
+*Core gameplay loop per level. Sets difficulty and controls word guessing.*
+
+* Sets:
+
+  * wordCount, gridSize, penalty, maxDirection
+* Calls (in order):
+
+  1. clearGrid() – Empty grid
+  2. loadWords(filename, wordCount) – Load words and hints from file
+  3. placeAllWords() – Tries to place each word in the grid
+
+     * → placeWordInGrid(index) for each word
+  4. fillGrid() – Fills empty grid spaces with random letters
+  5. displayGrid() – Initial visual
+  6. *Game loop (while not all words found)*:
+
+     * Takes user guess
+     * Converts to uppercase → toUpper()
+     * Checks for "HINT"
+
+       * → provideHint() (if allowed)
+     * Matches guess with word list
+     * Updates score/penalty
+     * → displayGrid() again to show progress
+
+---
+
+### 🔵 3. loadWords(filename, count)
+
+*Reads and parses words and hints from a file.*
+
+* Stores them in global words[] array
+* Populates word, hint, and sets found=0
+* Returns 1 if success, 0 if not
+
+---
+
+### 🔴 4. placeAllWords()
+
+*Places all words on the grid.*
+
+* Calls placeWordInGrid(i) for each word
+* Reports if any word couldn't be placed
+
+---
+
+### 🔶 5. placeWordInGrid(index)
+
+*Tries to place one word in a random position/direction.*
+
+* Uses:
+
+  * directions[dir] based on current maxDirection
+* Checks:
+
+  * Bounds
+  * Overlap conflicts
+* If valid, writes word to grid and updates word's row, col, dir
+
+---
+
+### 🟣 6. fillGrid()
+
+*Fills all empty grid cells with random uppercase letters.*
+
+* Done after all words are placed
+
+---
+
+### 🟤 7. displayGrid()
+
+*Displays the grid with row/column numbers.*
+
+* If a word is marked as found:
+
+  * It uses setColor(10) (green) to highlight its letters
+* Calls Sleep(50) for a staggered visual effect
+
+---
+
+### ⚪ 8. toUpper(str)
+
+*Helper to convert user input to uppercase.*
+
+* Prevents case sensitivity issues
+
+---
+
+### 🟠 9. provideHint(word)
+
+*Prints hint for a matching unfound word.*
+
+* Looks up the guessed word
+* Displays its associated hint if not yet found
+
+---
+
+### 🟣 10. bonusRound()
+
+*Runs a special emoji-based puzzle.*
+
+* Asks for a compound word based on emojis
+* Gives bonus points if answered correctly
+
+---
+
+### ⚫ 11. setColor(color)
+
+*Changes the console text color (Windows only).*
+
+* Used mostly in displayGrid() to highlight words
+
+---
+
+## 🔁 FUNCTION CALL MAP (FLOW CHART STYLE)
+
+text
+main
+ ├── srand(time)
+ ├── playLevel("Easyy.txt", 1)
+ │    ├── clearGrid
+ │    ├── loadWords
+ │    ├── placeAllWords
+ │    │    └── placeWordInGrid (per word)
+ │    ├── fillGrid
+ │    ├── displayGrid
+ │    └── Game Loop:
+ │         ├── toUpper
+ │         ├── provideHint (if "HINT")
+ │         ├── update score/found
+ │         └── displayGrid
+ ├── playLevel("Mediumm.txt", 2)
+ ├── playLevel("Hardd.txt", 3)
+ │    └── bonusRound
+ └── Final Score Output
+
+
+---
+
+Brief:
+
+* main() → handles game progression
+* playLevel() → controls the core level logic
+* File I/O + randomization + grid visualization handled modularly
+* Word placement and feedback are dynamic and tied to difficulty
+* Use of color and a bonus round adds engagement
+
